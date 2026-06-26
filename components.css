@@ -1,0 +1,771 @@
+/* ============================================================
+   Strategic Elements — component styles
+   Appended section by section alongside each component.
+   ============================================================ */
+
+/* ---- Header ---- */
+.site-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 36px 0 28px;
+  border-bottom: 1px solid var(--line);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.wordmark-main {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.wordmark-sub {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 4px;
+}
+
+.theme-toggle {
+  background: var(--bg-recessed);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 8px 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.theme-toggle span {
+  padding: 4px 10px;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle-active {
+  background: var(--terracotta);
+  color: var(--bg-elevated);
+}
+
+.theme-toggle-divider {
+  opacity: 0.5;
+}
+
+/* ---- Element badge (signature piece) ---- */
+.element-badge-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.element-badge {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--line-strong);
+  background: var(--bg-recessed);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: box-shadow 0.6s ease, border-color 0.6s ease, transform 0.2s ease;
+}
+
+.size-sm .element-badge {
+  width: 48px;
+  height: 48px;
+}
+
+.element-badge-wrap:hover .element-badge,
+.element-badge-wrap:focus-within .element-badge {
+  transform: translateY(-2px);
+}
+
+.element-number {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  color: var(--ink-faint);
+}
+
+.element-symbol {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.size-sm .element-symbol {
+  font-size: 16px;
+}
+
+.element-name {
+  font-size: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--ink-faint);
+  margin-top: 2px;
+  text-align: center;
+}
+
+.size-sm .element-name {
+  display: none;
+}
+
+/* Gentle ambient glow tied to today's price direction — the badge
+   doubles as a live indicator instead of a static decoration. */
+.glow-up {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 1px var(--terracotta-soft), 0 0 18px -4px var(--terracotta);
+  animation: pulse-up 3.2s ease-in-out infinite;
+}
+
+.glow-down {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 1px var(--violet-soft), 0 0 18px -4px var(--violet);
+  animation: pulse-down 3.2s ease-in-out infinite;
+}
+
+@keyframes pulse-up {
+  0%, 100% { box-shadow: 0 0 0 1px var(--terracotta-soft), 0 0 10px -4px var(--terracotta); }
+  50% { box-shadow: 0 0 0 1px var(--terracotta-soft), 0 0 20px -2px var(--terracotta); }
+}
+
+@keyframes pulse-down {
+  0%, 100% { box-shadow: 0 0 0 1px var(--violet-soft), 0 0 10px -4px var(--violet); }
+  50% { box-shadow: 0 0 0 1px var(--violet-soft), 0 0 20px -2px var(--violet); }
+}
+
+.element-fact-card {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: 220px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 12px;
+  line-height: 1.45;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 20;
+  box-shadow: var(--shadow);
+}
+
+.element-fact-card::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--ink);
+}
+
+.element-badge-wrap:hover .element-fact-card,
+.element-badge-wrap:focus-within .element-fact-card {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---- Mover ribbon ---- */
+.mover-ribbon {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  animation: slide-in 0.5s ease;
+}
+
+.glow-up-bg {
+  border-color: var(--terracotta-soft);
+}
+.glow-down-bg {
+  border-color: var(--violet-soft);
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mover-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+.mover-name {
+  font-weight: 600;
+}
+
+.mover-context {
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+/* ---- Pulse strip (centerpiece: price + trend + news fused) ---- */
+.pulse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.pulse-card {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pulse-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pulse-id {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.pulse-ticker {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-faint);
+}
+
+.pulse-name {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pulse-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.pulse-price-num {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pulse-trend {
+  border-top: 1px dashed var(--line);
+  border-bottom: 1px dashed var(--line);
+  padding: 6px 0;
+}
+
+.spark-empty {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.pulse-news {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.pulse-headline {
+  color: var(--ink);
+  flex: 1;
+}
+.pulse-headline:hover {
+  color: var(--terracotta);
+}
+
+.sentiment-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.sentiment-positive { background: var(--up); }
+.sentiment-negative { background: var(--down); }
+.sentiment-neutral { background: var(--ink-faint); }
+
+/* ---- Supply chain diagram ---- */
+.chain {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.chain-stage {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 220px;
+}
+
+.chain-stage-card {
+  padding: 18px;
+  flex: 1;
+  position: relative;
+  min-height: 170px;
+}
+
+.chain-stage-index {
+  color: var(--ink-faint);
+  font-size: 12px;
+}
+
+.chain-stage-name {
+  font-size: 17px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.chain-stage-desc {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  margin: 6px 0 12px;
+}
+
+.chain-tickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chain-ticker-pill {
+  font-size: 11px;
+}
+
+.chain-arrow {
+  color: var(--ink-faint);
+  font-size: 20px;
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 860px) {
+  .chain {
+    flex-direction: column;
+  }
+  .chain-stage {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .chain-arrow {
+    transform: rotate(90deg);
+    align-self: center;
+    padding: 4px 0;
+  }
+}
+
+/* ---- Sector chart ---- */
+.window-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chart-card {
+  padding: 18px;
+}
+
+.chart-tooltip {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+/* ---- Portfolio simulator ---- */
+.sim-grid {
+  padding: 22px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.sim-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.sim-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sim-amount-input {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-recessed);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  width: fit-content;
+}
+
+.sim-amount-input input {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  width: 110px;
+  outline: none;
+}
+
+.sim-reset {
+  background: none;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+.sim-reset:hover {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+}
+
+.sim-allocations {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.sim-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 40px;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.sim-row input[type='range'] {
+  accent-color: var(--terracotta);
+}
+
+.sim-row-share {
+  text-align: right;
+  color: var(--ink-muted);
+}
+
+.sim-result {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.sim-result-headline {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.sim-result-num {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .sim-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Fundamentals panel ---- */
+.fund-card {
+  padding: 22px;
+}
+
+.fund-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.fund-name {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.fund-blurb {
+  font-size: 13px;
+  color: var(--ink-muted);
+  max-width: 48ch;
+  margin-top: 4px;
+}
+
+.fund-stats {
+  display: flex;
+  gap: 24px;
+}
+
+.fund-stats p {
+  margin: 2px 0 0;
+  font-size: 15px;
+}
+
+.fund-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.gauge-track {
+  height: 8px;
+  background: var(--bg-recessed);
+  border-radius: 999px;
+  position: relative;
+  margin: 10px 0 6px;
+}
+
+.gauge-marker {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  border: 2px solid var(--bg-elevated);
+  transform: translate(-50%, -50%);
+  box-shadow: var(--shadow);
+}
+
+.gauge-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.gauge-current {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ladder-row {
+  display: grid;
+  grid-template-columns: 36px 1fr 56px;
+  align-items: center;
+  gap: 10px;
+}
+
+.ladder-window {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.ladder-bar-track {
+  height: 8px;
+  background: var(--bg-recessed);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ladder-bar {
+  height: 100%;
+  border-radius: 999px;
+}
+.ladder-bar.up { background: var(--terracotta); }
+.ladder-bar.down { background: var(--violet); }
+
+@media (max-width: 760px) {
+  .fund-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- News feed ---- */
+.policy-lane {
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  border-left: 3px solid var(--violet);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.policy-lane-label {
+  color: var(--violet);
+}
+
+.news-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-row {
+  display: flex;
+  gap: 10px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+.news-row:last-child {
+  border-bottom: none;
+}
+.news-row:hover {
+  background: var(--bg-recessed);
+  text-decoration: none;
+}
+
+.news-row-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.news-row-title {
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.news-row-meta {
+  font-size: 11px;
+}
+
+/* ---- Quiz card ---- */
+.quiz-card {
+  padding: 22px 24px;
+  max-width: 620px;
+}
+
+.quiz-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.quiz-question {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.quiz-option {
+  background: var(--bg-recessed);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 13px;
+  color: var(--ink);
+  transition: border-color 0.15s ease;
+}
+.quiz-option:hover {
+  border-color: var(--terracotta);
+}
+
+.quiz-option.correct {
+  border-color: var(--up);
+  background: var(--up-bg);
+  font-weight: 600;
+}
+
+.quiz-option.incorrect {
+  border-color: var(--down);
+  background: var(--down-bg);
+}
+
+.quiz-next {
+  margin-top: 14px;
+}
+
+@media (max-width: 560px) {
+  .quiz-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- About + footer ---- */
+.about-card {
+  padding: 26px 28px;
+  max-width: 760px;
+}
+
+.about-card p {
+  color: var(--ink-muted);
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.site-footer {
+  margin-top: 64px;
+  padding: 24px 0 40px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-faint);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---- Key warning ---- */
+.key-warning {
+  margin-top: 14px;
+  padding: 8px 14px;
+  border: 1px dashed var(--down);
+  border-radius: var(--radius-sm);
+  color: var(--down);
+  background: var(--down-bg);
+}

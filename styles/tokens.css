@@ -1,0 +1,216 @@
+/* ============================================================
+   Strategic Elements — design tokens
+   Two themes sharing one structure: "daylight" (the established
+   cream / terracotta / dusty-violet palette) and "ore" (the
+   original dark mineral palette), switchable at runtime.
+   Terracotta = warm/up, dusty violet = cool/down — used in place
+   of generic fintech green/red, tying the up/down language back
+   to the ore-and-mineral subject instead of a borrowed convention.
+   ============================================================ */
+
+:root,
+[data-theme='daylight'] {
+  --bg: #f4ece1;
+  --bg-elevated: #fbf6ee;
+  --bg-recessed: #ece1d2;
+  --ink: #2b2420;
+  --ink-muted: #6b5f54;
+  --ink-faint: #94887a;
+  --line: #ddccb4;
+  --line-strong: #c7b596;
+
+  --terracotta: #a8704a;
+  --terracotta-strong: #8a5a39;
+  --terracotta-soft: #e3c2a4;
+  --violet: #6f4f9e;
+  --violet-strong: #5a3f82;
+  --violet-soft: #d8c9ec;
+
+  --up: #a8704a;
+  --up-bg: rgba(168, 112, 74, 0.14);
+  --down: #6f4f9e;
+  --down-bg: rgba(111, 79, 158, 0.14);
+
+  --shadow: 0 1px 2px rgba(43, 36, 32, 0.06), 0 8px 24px rgba(43, 36, 32, 0.08);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+}
+
+[data-theme='ore'] {
+  --bg: #1b1714;
+  --bg-elevated: #24201b;
+  --bg-recessed: #15110f;
+  --ink: #ece1d2;
+  --ink-muted: #a89a86;
+  --ink-faint: #786a59;
+  --line: #3a3128;
+  --line-strong: #4a3f33;
+
+  --terracotta: #d08a55;
+  --terracotta-strong: #e3a571;
+  --terracotta-soft: #4a382a;
+  --violet: #a685d6;
+  --violet-strong: #bda3e0;
+  --violet-soft: #34294a;
+
+  --up: #d08a55;
+  --up-bg: rgba(208, 138, 85, 0.18);
+  --down: #a685d6;
+  --down-bg: rgba(166, 133, 214, 0.18);
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.4);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', Georgia, serif;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+mono, .mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+a {
+  color: var(--terracotta);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.app-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.section {
+  margin-top: 56px;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.section-sub {
+  color: var(--ink-muted);
+  font-size: 14px;
+  max-width: 56ch;
+}
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+}
+
+.status-line {
+  color: var(--ink-faint);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-recessed);
+  color: var(--ink-muted);
+}
+
+.pill.active {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  color: var(--bg-elevated);
+}
+
+.pill.clickable {
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.pill.clickable:hover {
+  transform: translateY(-1px);
+}
+
+.delta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+.delta.up {
+  color: var(--up);
+  background: var(--up-bg);
+}
+.delta.down {
+  color: var(--down);
+  background: var(--down-bg);
+}
